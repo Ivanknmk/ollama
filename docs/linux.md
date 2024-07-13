@@ -18,7 +18,7 @@ recommend you install the latest driver from
 https://www.amd.com/en/support/linux-drivers for best support of your Radeon
 GPU.
 
-## Manual install
+## Manual install (with sudo privileges)
 
 ### Download the `ollama` binary
 
@@ -85,19 +85,24 @@ Start Ollama using `systemd`:
 sudo systemctl start ollama
 ```
 
-## Update
+## Manual install (**NO** sudo privileges)
 
-Update ollama by running the install script again:
+### Download the `ollama` binary
+
+Ollama is distributed as a self-contained binary. Download it to a directory in your **local** PATH:
 
 ```bash
-curl -fsSL https://ollama.com/install.sh | sh
+curl -L https://ollama.com/download/ollama-linux-amd64 -o ~/.local/bin/ollama
+chmod +x ~/.local/bin/ollama
 ```
 
-Or by downloading the ollama binary:
+### Start
+
+Start the ollama server in the background and run a local model afterwards:
 
 ```bash
-sudo curl -L https://ollama.com/download/ollama-linux-amd64 -o /usr/bin/ollama
-sudo chmod +x /usr/bin/ollama
+./ollama serve&
+./ollama run llama3
 ```
 
 ## Installing specific versions
@@ -141,3 +146,5 @@ sudo rm -r /usr/share/ollama
 sudo userdel ollama
 sudo groupdel ollama
 ```
+
+
